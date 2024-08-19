@@ -1,0 +1,74 @@
+{
+  "name": "ts-enum-utilx",
+  "packageManager": "yarn@4.4.0",
+  "version": "0.0.0",
+  "description": "TypeScript Enum Utilities",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.mjs",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.mts",
+        "default": "./dist/es/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc && bunchee",
+    "test": "vitest --typecheck",
+    "lint": "eslint . --cache --fix",
+    "lint:ci": "eslint . --cache --cache-location ./node_modules/.cache/eslint/.eslintcache --max-warnings 0",
+    "format": "prettier --write --log-level warn --cache .",
+    "format:check": "prettier --check --cache ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exuanbo/ts-enum-utilx.git"
+  },
+  "keywords": [
+    "typescript",
+    "enum",
+    "util",
+    "utils",
+    "utility",
+    "utilities",
+    "enum-util",
+    "enum-utils",
+    "ts-enum-util",
+    "ts-enum-utils"
+  ],
+  "author": "exuanbo <exuanbo@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exuanbo/ts-enum-utilx/issues"
+  },
+  "homepage": "https://github.com/exuanbo/ts-enum-utilx#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/eslint": "^9",
+    "@types/eslint__js": "^8.42.3",
+    "@vitest/coverage-v8": "^2.0.5",
+    "bunchee": "^5.3.2",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.1.0",
+    "vitest": "^2.0.5"
+  },
+  "prettier": {
+    "experimentalTernaries": true,
+    "printWidth": 100
+  }
+}
