@@ -28,42 +28,42 @@ export function entries<T extends AnyEnumObject>(enumObj: T): IterableIterator<E
   return getValuesByKey<EnumValue<T>, T>(enumObj).entries();
 }
 
-export function getValue<T extends AnyEnumObject>(
+export function value<T extends AnyEnumObject>(
   enumObj: T,
   key: Nullable<string>,
 ): Optional<EnumValue<T>>;
 
-export function getValue<T extends AnyEnumObject>(
+export function value<T extends AnyEnumObject>(
   enumObj: T,
 ): (key: Nullable<string>) => Optional<EnumValue<T>>;
 
-export function getValue<T extends AnyEnumObject>(
+export function value<T extends AnyEnumObject>(
   enumObj: T,
   key?: Nullable<string>,
 ): Optional<EnumValue<T>> | ((key: Nullable<string>) => Optional<EnumValue<T>>) {
   if (arguments.length === 1) {
-    return (_key) => getValue(enumObj, _key);
+    return (_key) => value(enumObj, _key);
   }
   if (isKey(enumObj, key)) {
     return enumObj[key];
   }
 }
 
-export function getKey<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
+export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
   value: Nullable<NoInfer<V>>,
 ): Optional<EnumKey<T>>;
 
-export function getKey<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
+export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
 ): (value: Nullable<V>) => Optional<EnumKey<T>>;
 
-export function getKey<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
+export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
   value?: Nullable<NoInfer<V>>,
 ): Optional<EnumKey<T>> | ((value: Nullable<V>) => Optional<EnumKey<T>>) {
   if (arguments.length === 1) {
-    return (_value) => getKey(enumObj, _value);
+    return (_value) => key(enumObj, _value);
   }
   if (value != null) {
     return getKeysByValue<V, T>(enumObj).get(value);

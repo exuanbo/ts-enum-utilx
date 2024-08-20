@@ -1,6 +1,6 @@
 import { describe, expect, expectTypeOf, it } from "vitest";
 
-import { entries, forEach, getKey, getValue, isKey, isValue, keys, size, values } from "../src";
+import { entries, forEach, isKey, isValue, key, keys, size, value, values } from "../src";
 import { getKeys, getKeysByValue, getValuesByKey } from "../src/metadata";
 import type {
   EnumIteratee,
@@ -77,49 +77,49 @@ describe("Iterators", () => {
 
 describe("Getters", () => {
   it("should get value", () => {
-    expect(getValue(HetEnum, "A")).toBe(0);
-    expect(getValue(HetEnum, "B")).toBe("B");
-    expect(getValue(HetEnum, "C")).toBe(0.1);
-    expect(getValue(HetEnum, "D")).toBe("E");
+    expect(value(HetEnum, "A")).toBe(0);
+    expect(value(HetEnum, "B")).toBe("B");
+    expect(value(HetEnum, "C")).toBe(0.1);
+    expect(value(HetEnum, "D")).toBe("E");
 
-    expect(getValue(HetEnum, "E")).toBeUndefined();
-    expect(getValue(HetEnum, null)).toBeUndefined();
-    expect(getValue(HetEnum, undefined)).toBeUndefined();
+    expect(value(HetEnum, "E")).toBeUndefined();
+    expect(value(HetEnum, null)).toBeUndefined();
+    expect(value(HetEnum, undefined)).toBeUndefined();
 
-    expectTypeOf(getValue(HetEnum, "A")).toEqualTypeOf<Optional<HetEnum>>();
+    expectTypeOf(value(HetEnum, "A")).toEqualTypeOf<Optional<HetEnum>>();
   });
 
   it("should get key", () => {
-    expect(getKey(HetEnum, 0)).toBe("A");
-    expect(getKey(HetEnum, "B")).toBe("B");
-    expect(getKey(HetEnum, 0.1)).toBe("C");
-    expect(getKey(HetEnum, "E")).toBe("D");
+    expect(key(HetEnum, 0)).toBe("A");
+    expect(key(HetEnum, "B")).toBe("B");
+    expect(key(HetEnum, 0.1)).toBe("C");
+    expect(key(HetEnum, "E")).toBe("D");
 
-    expect(getKey(HetEnum, "F")).toBeUndefined();
-    expect(getKey(HetEnum, null)).toBeUndefined();
-    expect(getKey(HetEnum, undefined)).toBeUndefined();
+    expect(key(HetEnum, "F")).toBeUndefined();
+    expect(key(HetEnum, null)).toBeUndefined();
+    expect(key(HetEnum, undefined)).toBeUndefined();
 
-    expectTypeOf(getKey(HetEnum, 0)).toEqualTypeOf<Optional<keyof typeof HetEnum>>();
+    expectTypeOf(key(HetEnum, 0)).toEqualTypeOf<Optional<keyof typeof HetEnum>>();
   });
 
   it("should type check value argument", () => {
-    expect(getKey(NumberEnum, 1)).toBe("A");
+    expect(key(NumberEnum, 1)).toBe("A");
     // @ts-expect-error: Argument of type '"A"' is not assignable to parameter of type 'Nullable<number>'
-    expect(getKey(NumberEnum, "A")).toBeUndefined();
+    expect(key(NumberEnum, "A")).toBeUndefined();
 
-    expect(getKey(StringEnum, "A")).toBe("A");
+    expect(key(StringEnum, "A")).toBe("A");
     // @ts-expect-error: Argument of type '0' is not assignable to parameter of type 'Nullable<string>'
-    expect(getKey(StringEnum, 0)).toBeUndefined();
+    expect(key(StringEnum, 0)).toBeUndefined();
 
-    expect(getKey(HetEnum, 0)).toBe("A");
-    expect(getKey(HetEnum, "B")).toBe("B");
+    expect(key(HetEnum, 0)).toBe("A");
+    expect(key(HetEnum, "B")).toBe("B");
     // @ts-expect-error: Argument of type 'true' is not assignable to parameter of type 'Nullable<string | number>'
-    expect(getKey(HetEnum, true)).toBeUndefined();
+    expect(key(HetEnum, true)).toBeUndefined();
   });
 
   describe("Curried", () => {
     it("should get value", () => {
-      const getEnumValue = getValue(HetEnum);
+      const getEnumValue = value(HetEnum);
 
       expect(getEnumValue("A")).toBe(0);
       expect(getEnumValue("B")).toBe("B");
@@ -135,7 +135,7 @@ describe("Getters", () => {
     });
 
     it("should get key", () => {
-      const getEnumKey = getKey(HetEnum);
+      const getEnumKey = key(HetEnum);
 
       expect(getEnumKey(0)).toBe("A");
       expect(getEnumKey("B")).toBe("B");
@@ -151,14 +151,14 @@ describe("Getters", () => {
     });
 
     it("should type check value argument", () => {
-      expectTypeOf(getKey(NumberEnum)).parameters.toEqualTypeOf<[Nullable<number>]>();
-      expectTypeOf(getKey(NumberEnum)).returns.toEqualTypeOf<Optional<keyof typeof NumberEnum>>();
+      expectTypeOf(key(NumberEnum)).parameters.toEqualTypeOf<[Nullable<number>]>();
+      expectTypeOf(key(NumberEnum)).returns.toEqualTypeOf<Optional<keyof typeof NumberEnum>>();
 
-      expectTypeOf(getKey(StringEnum)).parameters.toEqualTypeOf<[Nullable<string>]>();
-      expectTypeOf(getKey(StringEnum)).returns.toEqualTypeOf<Optional<keyof typeof StringEnum>>();
+      expectTypeOf(key(StringEnum)).parameters.toEqualTypeOf<[Nullable<string>]>();
+      expectTypeOf(key(StringEnum)).returns.toEqualTypeOf<Optional<keyof typeof StringEnum>>();
 
-      expectTypeOf(getKey(HetEnum)).parameters.toEqualTypeOf<[Nullable<number | string>]>();
-      expectTypeOf(getKey(HetEnum)).returns.toEqualTypeOf<Optional<keyof typeof HetEnum>>();
+      expectTypeOf(key(HetEnum)).parameters.toEqualTypeOf<[Nullable<number | string>]>();
+      expectTypeOf(key(HetEnum)).returns.toEqualTypeOf<Optional<keyof typeof HetEnum>>();
     });
   });
 });
