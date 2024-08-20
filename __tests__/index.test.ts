@@ -1,6 +1,6 @@
 import { describe, expect, expectTypeOf, it } from "vitest";
 
-import { entries, forEach, key, value, isKey, isValue, keys, size, values } from "../src";
+import { entries, forEach, isKey, isValue, key, keys, size, value, values } from "../src";
 import { getKeys, getKeysByValue, getValuesByKey } from "../src/metadata";
 import type {
   EnumIteratee,
