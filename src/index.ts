@@ -14,18 +14,22 @@ import type {
 
 export type * from "./types";
 
+/*#__NO_SIDE_EFFECTS__*/
 export function size(enumObj: AnyEnumObject): number {
   return getKeys(enumObj).length;
 }
 
+/*#__NO_SIDE_EFFECTS__*/
 export function keys<T extends AnyEnumObject>(enumObj: T): IterableIterator<EnumKey<T>> {
   return getKeys(enumObj).values();
 }
 
+/*#__NO_SIDE_EFFECTS__*/
 export function values<T extends AnyEnumObject>(enumObj: T): IterableIterator<EnumValue<T>> {
   return getKeysByValue<EnumValue<T>, T>(enumObj).keys();
 }
 
+/*#__NO_SIDE_EFFECTS__*/
 export function entries<T extends AnyEnumObject>(enumObj: T): IterableIterator<EnumEntry<T>> {
   return getValuesByKey<EnumValue<T>, T>(enumObj).entries();
 }
@@ -39,6 +43,7 @@ export function value<T extends AnyEnumObject>(
   enumObj: T,
 ): (key: Nullable<string>) => Optional<EnumValue<T>>;
 
+/*#__NO_SIDE_EFFECTS__*/
 export function value<T extends AnyEnumObject>(
   enumObj: T,
   key?: Nullable<string>,
@@ -60,6 +65,7 @@ export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
 ): (value: Nullable<V>) => Optional<EnumKey<T>>;
 
+/*#__NO_SIDE_EFFECTS__*/
 export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
   value?: Nullable<NoInfer<V>>,
@@ -81,6 +87,7 @@ export function isKey<T extends AnyEnumObject>(
   enumObj: T,
 ): (key: Nullable<string>) => key is EnumKey<T>;
 
+/*#__NO_SIDE_EFFECTS__*/
 export function isKey<T extends AnyEnumObject>(
   enumObj: T,
   key?: Nullable<string>,
@@ -100,6 +107,7 @@ export function isValue<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
 ): (value: Nullable<V>) => value is EnumValue<T>;
 
+/*#__NO_SIDE_EFFECTS__*/
 export function isValue<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
   value?: Nullable<NoInfer<V>>,
