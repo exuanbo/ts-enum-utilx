@@ -12,6 +12,8 @@ import type {
   Optional,
 } from "./types";
 
+export type * from "./types";
+
 export function size(enumObj: AnyEnumObject): number {
   return getKeys(enumObj).length;
 }
