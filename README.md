@@ -115,6 +115,35 @@ getKey("YES");
 // => "Yes"
 ```
 
+<details>
+<summary><strong>E.key</strong> Type Inference</summary>
+
+```ts
+enum NumberEnum {
+  One = 1,
+}
+
+// @ts-expect-error: Argument of type '"A"' is not assignable to parameter of type 'Nullable<number>'
+E.key(NumberEnum, "A");
+
+enum StringEnum {
+  A = "A",
+}
+
+// @ts-expect-error: Argument of type '1' is not assignable to parameter of type 'Nullable<string>'
+E.key(StringEnum, 1);
+
+enum HetEnum {
+  A = 1,
+  B = "B",
+}
+
+// @ts-expect-error: Argument of type 'true' is not assignable to parameter of type 'Nullable<string | number>'
+E.key(HetEnum, true);
+```
+
+</details>
+
 ### isKey
 
 Check if a string is a key in the enum:
@@ -158,6 +187,35 @@ const isValue = E.isValue(Answer);
 isValue("YES");
 // => true
 ```
+
+<details>
+<summary><strong>E.isValue</strong> Type Inference</summary>
+
+```ts
+enum NumberEnum {
+  One = 1,
+}
+
+// @ts-expect-error: Argument of type '"A"' is not assignable to parameter of type 'Nullable<number>'.
+E.isValue(NumberEnum, "A");
+
+enum StringEnum {
+  A = "A",
+}
+
+// @ts-expect-error: Argument of type '0' is not assignable to parameter of type 'Nullable<string>'.
+E.isValue(StringEnum, 1);
+
+enum HetEnum {
+  A = 1,
+  B = "B",
+}
+
+// @ts-expect-error: Argument of type 'true' is not assignable to parameter of type 'Nullable<string | number>'.
+E.isValue(HetEnum, true);
+```
+
+</details>
 
 ### forEach
 
