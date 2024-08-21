@@ -93,6 +93,9 @@ Get the value associated with a key:
 E.value(Answer, "No");
 // => 0
 
+E.value(Answer, "Unknown");
+// => undefined
+
 const getValue = E.value(Answer);
 //    ^? (key: Nullable<string>) => Answer | undefined
 
@@ -108,6 +111,9 @@ Get the key associated with a value:
 E.key(Answer, 0);
 // => "No"
 
+E.key(Answer, "Unknown");
+// => undefined
+
 const getKey = E.key(Answer);
 //    ^? (value: Nullable<string | number>) => "No" | "Yes" | undefined
 
@@ -115,8 +121,10 @@ getKey("YES");
 // => "Yes"
 ```
 
+The `key` function is type-safe and will only accept values that are assignable to the enum values.
+
 <details>
-<summary><strong>E.key</strong> Type Inference</summary>
+<summary><strong>E.key</strong> type inference</summary>
 
 ```ts
 enum NumberEnum {
@@ -188,8 +196,10 @@ isValue("YES");
 // => true
 ```
 
+The `isValue` function is type-safe and will only accept values that are assignable to the enum values.
+
 <details>
-<summary><strong>E.isValue</strong> Type Inference</summary>
+<summary><strong>E.isValue</strong> type inference</summary>
 
 ```ts
 enum NumberEnum {
