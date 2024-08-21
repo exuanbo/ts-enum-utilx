@@ -214,7 +214,7 @@ enum StringEnum {
   A = "A",
 }
 
-// @ts-expect-error: Argument of type '0' is not assignable to parameter of type 'Nullable<string>'.
+// @ts-expect-error: Argument of type '1' is not assignable to parameter of type 'Nullable<string>'.
 E.isValue(StringEnum, 1);
 
 enum HetEnum {
