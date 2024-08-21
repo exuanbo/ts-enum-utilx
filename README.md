@@ -252,6 +252,10 @@ logEntries(Answer);
 // => [ "Yes", "YES" ]
 ```
 
+## API
+
+See the [API documentation](https://exuanbo.xyz/ts-enum-utilx/) for more details.
+
 ## License
 
 [MIT License](https://github.com/exuanbo/ts-enum-utilx/blob/main/LICENSE) @ 2024-Present [Xuanbo Cheng](https://github.com/exuanbo)
