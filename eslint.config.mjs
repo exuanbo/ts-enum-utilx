@@ -1,7 +1,6 @@
 // @ts-check
 
 import eslint from "@eslint/js";
-import configPrettier from "eslint-config-prettier";
 import pluginSimpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -31,7 +30,7 @@ export default tseslint.config(
   },
   {
     name: "exuanbo/ignores",
-    ignores: [".yarn", "coverage", "dist"],
+    ignores: [".yarn", "coverage", "dist", "docs"],
   },
   {
     name: "exuanbo/files",
@@ -71,9 +70,5 @@ export default tseslint.config(
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
     },
-  },
-  {
-    name: "config-prettier",
-    ...configPrettier,
   },
 );
