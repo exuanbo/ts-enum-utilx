@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/ts-enum-utilx.svg)](https://www.npmjs.com/package/ts-enum-utilx)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-enum-utilx.svg?label=bundle%20size)](https://bundlephobia.com/package/ts-enum-utilx)
 [![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/exuanbo/ts-enum-utilx/test.yml.svg?branch=main)](https://github.com/exuanbo/ts-enum-utilx/actions)
+[![Codecov (with branch)](https://img.shields.io/codecov/c/gh/exuanbo/ts-enum-utilx/main.svg?token=AlXLkYCvrA)](https://app.codecov.io/gh/exuanbo/ts-enum-utilx/tree/main/src)
 
 Strictly typed utilities for working with TypeScript enums inspired by [`ts-enum-util`](https://github.com/UselessPickles/ts-enum-util).
 
