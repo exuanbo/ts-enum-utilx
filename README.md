@@ -32,7 +32,7 @@ pnpm add ts-enum-utilx
 Namespace import is recommended for better tree-shaking:
 
 ```ts
-import * as E from 'ts-enum-utilx';
+import * as E from "ts-enum-utilx";
 
 enum Answer {
   No = 0,
