@@ -5,18 +5,20 @@ on:
     branches:
       - main
     paths:
-      - "src/**"
       - "__tests__/**"
-      - "tsconfig.json"
+      - "src/**"
+      - ".github/workflows/test.yml"
       - "package.json"
+      - "tsconfig.json"
   push:
     branches:
       - main
     paths:
-      - "src/**"
       - "__tests__/**"
-      - "tsconfig.json"
+      - "src/**"
+      - ".github/workflows/test.yml"
       - "package.json"
+      - "tsconfig.json"
 
 jobs:
   run:
