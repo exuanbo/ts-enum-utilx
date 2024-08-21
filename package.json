@@ -24,7 +24,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsc && bunchee",
-    "test": "vitest --typecheck",
+    "test": "vitest --coverage --coverage.all=false --typecheck",
     "lint": "eslint . --fix --cache",
     "lint:ci": "eslint . --max-warnings 0 --cache --cache-location ./node_modules/.cache/eslint/.eslintcache",
     "format": "prettier . --write --log-level warn --cache",
