@@ -25,10 +25,10 @@
   "scripts": {
     "build": "tsc && bunchee",
     "test": "vitest --typecheck",
-    "lint": "eslint . --cache --fix",
-    "lint:ci": "eslint . --cache --cache-location ./node_modules/.cache/eslint/.eslintcache --max-warnings 0",
-    "format": "prettier --write --log-level warn --cache .",
-    "format:check": "prettier --check --cache ."
+    "lint": "eslint . --fix --cache",
+    "lint:ci": "eslint . --max-warnings 0 --cache --cache-location ./node_modules/.cache/eslint/.eslintcache",
+    "format": "prettier . --write --log-level warn --cache",
+    "format:check": "prettier . --check --cache"
   },
   "repository": {
     "type": "git",
