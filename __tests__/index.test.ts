@@ -106,16 +106,16 @@ describe("Getters", () => {
 
   it("should type check value argument", () => {
     expect(E.key(NumberEnum, 1)).toBe("A");
-    // @ts-expect-error: Argument of type '"A"' is not assignable to parameter of type 'Nullable<number>'
+    // @ts-expect-error: Argument of type '"A"' is not assignable to parameter of type 'Nullable<number>'.
     expect(E.key(NumberEnum, "A")).toBeUndefined();
 
     expect(E.key(StringEnum, "A")).toBe("A");
-    // @ts-expect-error: Argument of type '0' is not assignable to parameter of type 'Nullable<string>'
+    // @ts-expect-error: Argument of type '0' is not assignable to parameter of type 'Nullable<string>'.
     expect(E.key(StringEnum, 0)).toBeUndefined();
 
     expect(E.key(HetEnum, 0)).toBe("A");
     expect(E.key(HetEnum, "B")).toBe("B");
-    // @ts-expect-error: Argument of type 'true' is not assignable to parameter of type 'Nullable<string | number>'
+    // @ts-expect-error: Argument of type 'true' is not assignable to parameter of type 'Nullable<string | number>'.
     expect(E.key(HetEnum, true)).toBeUndefined();
   });
 
@@ -194,16 +194,16 @@ describe("Predicates", () => {
 
   it("should type check value", () => {
     expect(E.isValue(NumberEnum, 1)).toBe(true);
-    // @ts-expect-error: only number values are allowed
+    // @ts-expect-error: Argument of type '"A"' is not assignable to parameter of type 'Nullable<number>'.
     expect(E.isValue(NumberEnum, "A")).toBe(false);
 
     expect(E.isValue(StringEnum, "A")).toBe(true);
-    // @ts-expect-error: only string values are allowed
+    // @ts-expect-error: Argument of type '0' is not assignable to parameter of type 'Nullable<string>'.
     expect(E.isValue(StringEnum, 0)).toBe(false);
 
     expect(E.isValue(HetEnum, 0)).toBe(true);
     expect(E.isValue(HetEnum, "B")).toBe(true);
-    // @ts-expect-error: only string or number values are allowed
+    // @ts-expect-error: Argument of type 'true' is not assignable to parameter of type 'Nullable<string | number>'.
     expect(E.isValue(HetEnum, true)).toBe(false);
   });
 
