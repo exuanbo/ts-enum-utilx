@@ -1,9 +1,9 @@
-import type { AnyEnumObject, AnyEnumValue, EnumKey, EnumObject } from "./types";
+import type { AnyEnumObject, AnyEnumValue, EnumEntry, EnumKey, EnumObject } from "./types";
 
 interface EnumMetadata<V extends AnyEnumValue, T extends EnumObject<T, V>> {
   ks?: ReadonlyArray<EnumKey<T>>;
-  kv?: ReadonlyMap<EnumKey<T>, V>;
-  vk?: ReadonlyMap<V, EnumKey<T>>;
+  kvs?: ReadonlyArray<EnumEntry<T>>;
+  v_k?: ReadonlyMap<V, EnumKey<T>>;
 }
 
 const metadataCache = /*#__PURE__*/ new WeakMap<AnyEnumObject, EnumMetadata<any, any>>();
@@ -25,18 +25,16 @@ export function getKeys<T extends AnyEnumObject>(enumObj: T): ReadonlyArray<Enum
   ));
 }
 
-export function getKeysByValue<V extends AnyEnumValue, T extends EnumObject<T, V>>(
+export function getEntries<V extends AnyEnumValue, T extends EnumObject<T, V>>(
   enumObj: T,
-): ReadonlyMap<V, EnumKey<T>> {
-  return (getMetadata<V, T>(enumObj).vk ||= new Map(
-    getKeys(enumObj).map((key) => [enumObj[key], key]),
-  ));
+): ReadonlyArray<EnumEntry<T>> {
+  return (getMetadata<V, T>(enumObj).kvs ||= getKeys(enumObj).map((key) => [key, enumObj[key]]));
 }
 
-export function getValuesByKey<V extends AnyEnumValue, T extends EnumObject<T, V>>(
+export function getValueKeyMap<V extends AnyEnumValue, T extends EnumObject<T, V>>(
   enumObj: T,
-): ReadonlyMap<EnumKey<T>, V> {
-  return (getMetadata<V, T>(enumObj).kv ||= new Map(
-    getKeys(enumObj).map((key) => [key, enumObj[key]]),
+): ReadonlyMap<V, EnumKey<T>> {
+  return (getMetadata<V, T>(enumObj).v_k ||= new Map(
+    getKeys(enumObj).map((key) => [enumObj[key], key]),
   ));
 }

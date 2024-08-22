@@ -1,4 +1,4 @@
-import { getKeys, getKeysByValue, getValuesByKey } from "./metadata";
+import { getEntries, getKeys, getValueKeyMap } from "./metadata";
 import type {
   AnyEnumObject,
   EnumEntry,
@@ -26,12 +26,12 @@ export function keys<T extends AnyEnumObject>(enumObj: T): IterableIterator<Enum
 
 /*#__NO_SIDE_EFFECTS__*/
 export function values<T extends AnyEnumObject>(enumObj: T): IterableIterator<EnumValue<T>> {
-  return getKeysByValue<EnumValue<T>, T>(enumObj).keys();
+  return getValueKeyMap<EnumValue<T>, T>(enumObj).keys();
 }
 
 /*#__NO_SIDE_EFFECTS__*/
 export function entries<T extends AnyEnumObject>(enumObj: T): IterableIterator<EnumEntry<T>> {
-  return getValuesByKey<EnumValue<T>, T>(enumObj).entries();
+  return getEntries<EnumValue<T>, T>(enumObj).values();
 }
 
 export function value<T extends AnyEnumObject>(
@@ -74,7 +74,7 @@ export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
     return (_value) => key(enumObj, _value);
   }
   if (value != null) {
-    return getKeysByValue<V, T>(enumObj).get(value);
+    return getValueKeyMap<V, T>(enumObj).get(value);
   }
 }
 
@@ -115,7 +115,7 @@ export function isValue<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   if (arguments.length === 1) {
     return (_value) => isValue(enumObj, _value);
   }
-  return value != null && getKeysByValue<V, T>(enumObj).has(value);
+  return value != null && getValueKeyMap<V, T>(enumObj).has(value);
 }
 
 export function forEach<T extends AnyEnumObject>(enumObj: T, iteratee: EnumIteratee<T>): void;

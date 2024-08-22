@@ -1,7 +1,7 @@
 import { describe, expect, expectTypeOf, it } from "vitest";
 
 import * as E from "../src";
-import { getKeys, getKeysByValue, getValuesByKey } from "../src/metadata";
+import { getEntries, getKeys, getValueKeyMap } from "../src/metadata";
 import type {
   AnyEnumObject,
   AnyEnumValue,
@@ -33,21 +33,21 @@ describe("Metadata", () => {
     expect(getKeys(HetEnum)).toEqual(["A", "B", "C", "D"]);
   });
 
-  it("should get keys by value", () => {
-    expect([...getKeysByValue(HetEnum).entries()]).toEqual([
-      [0, "A"],
-      ["B", "B"],
-      [0.1, "C"],
-      ["E", "D"],
-    ]);
-  });
-
-  it("should get values by key", () => {
-    expect([...getValuesByKey(HetEnum).entries()]).toEqual([
+  it("should get entries", () => {
+    expect(getEntries(HetEnum)).toEqual([
       ["A", 0],
       ["B", "B"],
       ["C", 0.1],
       ["D", "E"],
+    ]);
+  });
+
+  it("should get keys by value", () => {
+    expect([...getValueKeyMap(HetEnum).entries()]).toEqual([
+      [0, "A"],
+      ["B", "B"],
+      [0.1, "C"],
+      ["E", "D"],
     ]);
   });
 });
