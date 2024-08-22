@@ -2,8 +2,8 @@ import type { AnyEnumObject, AnyEnumValue, EnumKey, EnumObject } from "./types";
 
 interface EnumMetadata<V extends AnyEnumValue, T extends EnumObject<T, V>> {
   ks?: ReadonlyArray<EnumKey<T>>;
-  vk?: ReadonlyMap<V, EnumKey<T>>;
   kv?: ReadonlyMap<EnumKey<T>, V>;
+  vk?: ReadonlyMap<V, EnumKey<T>>;
 }
 
 const metadataCache = /*#__PURE__*/ new WeakMap<AnyEnumObject, EnumMetadata<any, any>>();
@@ -21,9 +21,7 @@ function getMetadata<V extends AnyEnumValue, T extends EnumObject<T, V>>(
 
 export function getKeys<T extends AnyEnumObject>(enumObj: T): ReadonlyArray<EnumKey<T>> {
   return (getMetadata(enumObj).ks ||= <EnumKey<T>[]>(
-    Object.getOwnPropertyNames(enumObj).filter(
-      (key) => isNaN(Number(key)) && {}.propertyIsEnumerable.call(enumObj, key),
-    )
+    Object.keys(enumObj).filter((key) => isNaN(Number(key)))
   ));
 }
 
