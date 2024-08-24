@@ -1,9 +1,15 @@
 import type { AnyEnumObject, AnyEnumValue, EnumEntry, EnumKey, EnumObject } from "./types";
 
+const enum MetadataType {
+  Keys,
+  Entries,
+  ValueKeyMap,
+}
+
 interface EnumMetadata<V extends AnyEnumValue, T extends EnumObject<T, V>> {
-  ks?: ReadonlyArray<EnumKey<T>>;
-  kvs?: ReadonlyArray<EnumEntry<T>>;
-  v_k?: ReadonlyMap<V, EnumKey<T>>;
+  [MetadataType.Keys]?: ReadonlyArray<EnumKey<T>>;
+  [MetadataType.Entries]?: ReadonlyArray<EnumEntry<T>>;
+  [MetadataType.ValueKeyMap]?: ReadonlyMap<V, EnumKey<T>>;
 }
 
 const metadataCache = /*#__PURE__*/ new WeakMap<AnyEnumObject, EnumMetadata<any, any>>();
@@ -20,7 +26,7 @@ function getMetadata<V extends AnyEnumValue, T extends EnumObject<T, V>>(
 }
 
 export function getKeys<T extends AnyEnumObject>(enumObj: T): ReadonlyArray<EnumKey<T>> {
-  return (getMetadata(enumObj).ks ||= <EnumKey<T>[]>(
+  return (getMetadata(enumObj)[MetadataType.Keys] ||= <EnumKey<T>[]>(
     Object.keys(enumObj).filter((key) => isNaN(Number(key)))
   ));
 }
@@ -28,13 +34,15 @@ export function getKeys<T extends AnyEnumObject>(enumObj: T): ReadonlyArray<Enum
 export function getEntries<V extends AnyEnumValue, T extends EnumObject<T, V>>(
   enumObj: T,
 ): ReadonlyArray<EnumEntry<T>> {
-  return (getMetadata<V, T>(enumObj).kvs ||= getKeys(enumObj).map((key) => [key, enumObj[key]]));
+  return (getMetadata<V, T>(enumObj)[MetadataType.Entries] ||= <EnumEntry<T>[]>(
+    getKeys(enumObj).map((key) => [key, enumObj[key]])
+  ));
 }
 
 export function getValueKeyMap<V extends AnyEnumValue, T extends EnumObject<T, V>>(
   enumObj: T,
 ): ReadonlyMap<V, EnumKey<T>> {
-  return (getMetadata<V, T>(enumObj).v_k ||= new Map(
+  return (getMetadata<V, T>(enumObj)[MetadataType.ValueKeyMap] ||= new Map<V, EnumKey<T>>(
     getKeys(enumObj).map((key) => [enumObj[key], key]),
   ));
 }
