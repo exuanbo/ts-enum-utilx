@@ -1,6 +1,10 @@
+/** @internal */
 export type NoInfer<T> = [T][T extends any ? 0 : never];
 
+/** @internal */
 export type Nullable<T> = T | null | undefined;
+
+/** @internal */
 export type Optional<T> = T | undefined;
 
 export type StringKeyOf<T> = Extract<keyof T, string>;
