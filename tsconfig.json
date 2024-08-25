@@ -11,6 +11,7 @@
 
     // Emit
     "noEmit": true,
+    "stripInternal": true,
 
     // Interop Constraints
     "allowSyntheticDefaultImports": true,
