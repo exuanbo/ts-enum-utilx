@@ -1,7 +1,7 @@
 {
   "name": "ts-enum-utilx",
   "packageManager": "yarn@4.4.0",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "TypeScript Enum Utilities",
   "files": [
     "dist"
