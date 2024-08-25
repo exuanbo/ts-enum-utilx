@@ -36,12 +36,12 @@ export function entries<T extends AnyEnumObject>(enumObj: T): IterableIterator<E
 
 export function value<T extends AnyEnumObject>(
   enumObj: T,
-  key: Nullable<string>,
-): Optional<EnumValue<T>>;
+  key: string | null | undefined,
+): EnumValue<T> | undefined;
 
 export function value<T extends AnyEnumObject>(
   enumObj: T,
-): (key: Nullable<string>) => Optional<EnumValue<T>>;
+): (key: string | null | undefined) => EnumValue<T> | undefined;
 
 /*#__NO_SIDE_EFFECTS__*/
 export function value<T extends AnyEnumObject>(
@@ -58,12 +58,12 @@ export function value<T extends AnyEnumObject>(
 
 export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
-  value: Nullable<NoInfer<V>>,
-): Optional<EnumKey<T>>;
+  value: NoInfer<V> | null | undefined,
+): EnumKey<T> | undefined;
 
 export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
-): (value: Nullable<V>) => Optional<EnumKey<T>>;
+): (value: V | null | undefined) => EnumKey<T> | undefined;
 
 /*#__NO_SIDE_EFFECTS__*/
 export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
@@ -80,12 +80,12 @@ export function key<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
 
 export function isKey<T extends AnyEnumObject>(
   enumObj: T,
-  key: Nullable<string>,
+  key: string | null | undefined,
 ): key is EnumKey<T>;
 
 export function isKey<T extends AnyEnumObject>(
   enumObj: T,
-): (key: Nullable<string>) => key is EnumKey<T>;
+): (key: string | null | undefined) => key is EnumKey<T>;
 
 /*#__NO_SIDE_EFFECTS__*/
 export function isKey<T extends AnyEnumObject>(
@@ -100,12 +100,12 @@ export function isKey<T extends AnyEnumObject>(
 
 export function isValue<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
-  value: Nullable<NoInfer<V>>,
+  value: NoInfer<V> | null | undefined,
 ): value is EnumValue<T>;
 
 export function isValue<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
   enumObj: T,
-): (value: Nullable<V>) => value is EnumValue<T>;
+): (value: V | null | undefined) => value is EnumValue<T>;
 
 /*#__NO_SIDE_EFFECTS__*/
 export function isValue<V extends EnumValueBase<T>, T extends EnumObject<T, V>>(
